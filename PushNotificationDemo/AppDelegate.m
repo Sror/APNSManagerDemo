@@ -7,15 +7,44 @@
 //
 
 #import "AppDelegate.h"
+#import "APPconnect.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    
+    [application registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+
+    
     return YES;
 }
-							
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    
+    NSLog(@"Did register for remote notifications: %@", deviceToken);
+    
+    NSString *apiKey = @"2826485b4c4649eade60cdfaee4fe0ce";
+    NSString *sharedSecret = @"bb33a95308284873";
+    NSString *url = @"http://djloboapp.com/apnsmanager/";
+    APPconnect *service = [[APPconnect alloc] initWithUrl:url api:apiKey andSharedsecret:sharedSecret];
+    [service registerDevice:[deviceToken description] withCustomInfo:@"DJ Lobo App" error:nil];
+    
+    
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Fail to register for remote notifications: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
