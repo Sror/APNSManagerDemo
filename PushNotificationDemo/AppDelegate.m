@@ -31,7 +31,6 @@
     NSString *apiKey = @"YOUR_API_KEY";
     NSString *sharedSecret = @"YOUR_SHARED_SECRET";
     NSString *url = @"http://yourwebsite.com/apnsmanager/";
-    
     APPconnect *service = [[APPconnect alloc] initWithUrl:url api:apiKey andSharedsecret:sharedSecret];
     [service registerDevice:[deviceToken description] withCustomInfo:@"Your App Name" error:nil];
     
