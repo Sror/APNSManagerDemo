@@ -31,6 +31,7 @@
     NSString *apiKey = @"YOUR_API_KEY";
     NSString *sharedSecret = @"YOUR_SHARED_SECRET";
     NSString *url = @"http://yourwebsite.com/apnsmanager/";
+    
     APPconnect *service = [[APPconnect alloc] initWithUrl:url api:apiKey andSharedsecret:sharedSecret];
     [service registerDevice:[deviceToken description] withCustomInfo:@"Your App Name" error:nil];
     
@@ -39,6 +40,9 @@
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"Fail to register for remote notifications: %@", error);
+    
+    //If you are app fails to register, please make sure that you are not using a wildchar domain such as "com.yourdomain.*"
+    //You need to have a provisioning profile that has been enabled for push notifications.
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
