@@ -3,7 +3,7 @@
 //  PushNotificationDemo
 //
 //  Created by Eddie Espinal on 10/24/12.
-//  Copyright (c) 2012 LSN Mobile. All rights reserved.
+//  Copyright (c) 2012 EspinalLab.com. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -27,11 +27,12 @@
     
     NSLog(@"Did register for remote notifications: %@", deviceToken);
     
-    NSString *apiKey = @"2826485b4c4649eade60cdfaee4fe0ce";
-    NSString *sharedSecret = @"bb33a95308284873";
-    NSString *url = @"http://djloboapp.com/apnsmanager/";
+    //you will find these values when you create an app from your apnsmanager website
+    NSString *apiKey = @"YOUR_API_KEY";
+    NSString *sharedSecret = @"YOUR_SHARED_SECRET";
+    NSString *url = @"http://yourwebsite.com/apnsmanager/";
     APPconnect *service = [[APPconnect alloc] initWithUrl:url api:apiKey andSharedsecret:sharedSecret];
-    [service registerDevice:[deviceToken description] withCustomInfo:@"DJ Lobo App" error:nil];
+    [service registerDevice:[deviceToken description] withCustomInfo:@"Your App Name" error:nil];
     
     
 }

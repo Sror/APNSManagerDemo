@@ -3,7 +3,7 @@
 //  PushNotificationDemo
 //
 //  Created by Eddie Espinal on 10/24/12.
-//  Copyright (c) 2012 LSN Mobile. All rights reserved.
+//  Copyright (c) 2012 EspinalLab.com. All rights reserved.
 //
 
 #import "ViewController.h"
